@@ -29,7 +29,7 @@ client.connect(err => {
     console.log(req.body)
     collection.insertOne(req.body)
   })
-  app.get("/data",(req,res)=>{
+  app.get('/data',(req,res)=>{
     collection.find({})
     .toArray((err,document)=>{
       res.send(document)
