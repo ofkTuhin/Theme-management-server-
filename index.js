@@ -29,6 +29,12 @@ client.connect(err => {
     console.log(req.body)
     collection.insertOne(req.body)
   })
+  app.get("/data",(req,res)=>{
+    collection.find({})
+    .toArray((err,document)=>{
+      res.send(document)
+    })
+  })
   // perform actions on the collection object
  
 });
