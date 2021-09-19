@@ -35,7 +35,7 @@ client.connect(err => {
       res.send(document)
     })
   })
-  // perform actions on the collection object
+  
  
 });
 
