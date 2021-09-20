@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
   
 const { MongoClient } = require('mongodb');
+const ObjectId = require('mongodb').ObjectId;
 
 const cors=require('cors')
 require('dotenv').config()
@@ -34,6 +35,11 @@ client.connect(err => {
     .toArray((err,document)=>{
       res.send(document)
     })
+  })
+  app.delete('/delete/:id',(req,res)=>{
+    console.log(req.params.id)
+    collection.deleteOne({_id: ObjectId(req.params.id)})
+    .then(result=>res.send(result.deletedCount>0))
   })
   
  
