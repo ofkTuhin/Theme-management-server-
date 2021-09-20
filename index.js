@@ -29,6 +29,10 @@ client.connect(err => {
   app.post('/addTheme',(req,res)=>{
     console.log(req.body)
     collection.insertOne(req.body)
+    .then(result => {
+      console.log('inserted count', result.insertedCount);
+      res.send(result.insertedCount > 0)
+  })
   })
   app.get('/data',(req,res)=>{
     collection.find({})
