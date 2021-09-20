@@ -42,18 +42,27 @@ client.connect(err => {
     .then(result=>res.send(result.deletedCount>0))
   })
 
-  app.get('/updateData/:id',(req,res)=>{
-    collection.find({_id: ObjectId(req.params.id)})
-    .toArray((document,err)=>{
-      res.send(document)
+  app.get('/singleValue/:id',(req,res)=>{
+    console.log(ObjectId(req.params.id))
+    collection.find({_id:ObjectId(req.params.id)})
+    .toArray((err,documents)=>{
+      res.send(documents[0])
     })
-
-
   })
+    // app.get('/newsDetails/:id',(req,res)=>{
+    //   console.log(ObjectId(req.params.id))
+    //   NewsCollection.find({_id:ObjectId(req.params.id)})
+    //   .toArray((err, documents) => {
+    //     res.send(documents[0])
+    //   })
+    // })
+
+
+  
 
   app.put('/update/:id',(req,res)=>{
     console.log(req.params.id)
-    // collection.updateOne({_id: ObjectId(req.params.id)})
+    collection.updateOne({_id: ObjectId(req.params.id)})
     
   })
   
