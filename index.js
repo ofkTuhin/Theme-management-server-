@@ -41,6 +41,21 @@ client.connect(err => {
     collection.deleteOne({_id: ObjectId(req.params.id)})
     .then(result=>res.send(result.deletedCount>0))
   })
+
+  app.get('/updateData/:id',(req,res)=>{
+    collection.find({_id: ObjectId(req.params.id)})
+    .toArray((document,err)=>{
+      res.send(document)
+    })
+
+
+  })
+
+  app.put('/update/:id',(req,res)=>{
+    console.log(req.params.id)
+    // collection.updateOne({_id: ObjectId(req.params.id)})
+    
+  })
   
  
 });
