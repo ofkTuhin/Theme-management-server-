@@ -64,24 +64,28 @@ client.connect(err => {
 
   
 
-    app.post('/update/:id', (req, res) => {
-      orderCollection.updateOne({ _id: ObjectId(req.params.id) },
-      {
-          $set: {name:req.body.name,
-            version:req.body.version,
-            feature:req.body.feature,
-            website:req.body.website,
-            image:req.body.image
-          
-          }
-      })
-          .then(result=>{
-            res.send(result)
-          })
+  app.put('/updateOne/:id',(req,res)=>{
+    console.log(ObjectId(req.params.id))
+    console.log(req.body)
+    collection.updateOne({_id:ObjectId(req.params.id)},
+    {
+      $set:{
+      data:req.body
 
+      }
+    }
+    
+    )
   })
   
- 
+  // {  $set:{
+
+  //   name:req.body.name,
+  //   version:req.body.version,
+  //   feature:req.body.feature,
+  //   website:req.body.website,
+  //   image:req.body.image
+  // }}
 });
 
 
