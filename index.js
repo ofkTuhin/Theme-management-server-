@@ -76,7 +76,7 @@ client.connect(err => {
           }
       })
           .then(result=>{
-              console.log(result);
+            res.send(result)
           })
 
   })
