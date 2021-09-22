@@ -53,39 +53,24 @@ client.connect(err => {
       res.send(documents[0])
     })
   })
-    // app.get('/newsDetails/:id',(req,res)=>{
-    //   console.log(ObjectId(req.params.id))
-    //   NewsCollection.find({_id:ObjectId(req.params.id)})
-    //   .toArray((err, documents) => {
-    //     res.send(documents[0])
-    //   })
-    // })
+    
 
 
-  
-
-  app.put('/updateOne/:id',(req,res)=>{
+  app.patch('/updateOne/:id',(req,res)=>{
     console.log(ObjectId(req.params.id))
     console.log(req.body)
     collection.updateOne({_id:ObjectId(req.params.id)},
     {
       $set:{
-      data:req.body
-
-      }
-    }
-    
-    )
+      data:{
+        name:req.body.name
+      }}
+    })
+    .then(result=>{res.send(result.modifiedCount>0)
+      console.log(result)})
   })
   
-  // {  $set:{
-
-  //   name:req.body.name,
-  //   version:req.body.version,
-  //   feature:req.body.feature,
-  //   website:req.body.website,
-  //   image:req.body.image
-  // }}
+  
 });
 
 
