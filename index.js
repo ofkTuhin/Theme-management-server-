@@ -63,7 +63,11 @@ client.connect(err => {
     {
       $set:{
       data:{
-        name:req.body.name
+        name:req.body.name,
+        feature:req.body.feature,
+        version:req.body.version,
+        image:req.body.image,
+        website:req.body.website
       }}
     })
     .then(result=>{res.send(result.modifiedCount>0)
