@@ -62,7 +62,7 @@ client.connect(err => {
     collection.updateOne({_id:ObjectId(req.params.id)},
     {
       $set:{
-      data:{
+      event:{
         name:req.body.name,
         feature:req.body.feature,
         version:req.body.version,
