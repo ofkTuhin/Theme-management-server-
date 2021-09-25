@@ -64,7 +64,10 @@ client.connect(err => {
       $set:{
       event:{
         name:req.body.themeName,
-        feature:req.body.fork,
+        fork:req.body.fork,
+        LastCommit:req.body.LastCommit,
+        stars:req.body.star,
+        create:req.body.create
        
       }}
     })
