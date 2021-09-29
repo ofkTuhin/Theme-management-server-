@@ -22,9 +22,7 @@ app.use(cors())
 app.use(express.json())
 
   
-app.get('/',  (req, res)=> {
-  res.get('X-Frame-Options') // === 'Deny'
-})
+app.use(xFrameOptions())
 
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
