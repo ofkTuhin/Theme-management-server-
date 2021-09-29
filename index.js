@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const xFrameOptions = require('x-frame-options')
   
 const { MongoClient } = require('mongodb');
 const ObjectId = require('mongodb').ObjectId;
@@ -21,7 +22,9 @@ app.use(cors())
 app.use(express.json())
 
   
-
+app.get('/',  (req, res)=> {
+  res.get('X-Frame-Options') // === 'Deny'
+})
 
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
