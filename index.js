@@ -58,23 +58,50 @@ client.connect(err => {
 
 
   app.patch('/updateOne/:id',(req,res)=>{
-    console.log(ObjectId(req.params.id))
-    console.log(req.body)
+   
+    console.log('data',req.body)
     collection.updateOne({_id:ObjectId(req.params.id)},
     {
       $set:{
       event:{
-        name:req.body.themeName,
+        themeName:req.body.themeName,
         fork:req.body.fork,
         LastCommit:req.body.LastCommit,
-        stars:req.body.star,
-        create:req.body.create
+        fullName:req.body.fullName,
+        star:req.body.star,
+        create:req.body.create,
+        readMe:req.body.readMe
        
       }}
     })
     .then(result=>{res.send(result.modifiedCount>0)
       console.log(result)})
   })
+  const updateCollection = client.db("themeManagement").collection("updateTest");
+  app.post('/updateTest',(req,res)=>{
+    console.log(req.body)
+    updateCollection.insertOne(req.body)
+  })
+  // app.patch('/update',(req,res)=>{
+  //   console.log(req.body.q.b)
+  //   updateCollection.updateMany({}, {
+  //     $set:{
+  //       p:{a:req.body.q.b}
+       
+  //     }
+      
+  //   })
+   
+
+    
+    
+  // })
+  app.delete('/deleteAll',(req,res)=>{
+    console.log('delete')
+    updateCollection.deleteMany({})
+  })
+
+
   
   
 });
