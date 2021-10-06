@@ -60,22 +60,29 @@ client.connect(err => {
   app.patch('/updateOne/:id',(req,res)=>{
    
     console.log('data',req.body)
-    collection.updateOne({_id:ObjectId(req.params.id)},
-    {
-      $set:{
-      event:{
-        themeName:req.body.themeName,
-        fork:req.body.fork,
-        LastCommit:req.body.LastCommit,
-        fullName:req.body.fullName,
-        star:req.body.star,
-        create:req.body.create,
-        readMe:req.body.readMe
-       
-      }}
-    })
-    .then(result=>{res.send(result.modifiedCount>0)
-      console.log(result)})
+    // console.log(ObjectId(req.params.id))
+    const id={_id: ObjectId(req.params.id)}
+   
+      console.log('id',id)
+      collection.updateOne(id,
+        {
+          $set:{
+          event:{
+            themeName:req.body.themeName,
+            fork:req.body.fork,
+            LastCommit:req.body.LastCommit,
+            fullName:req.body.fullName,
+            star:req.body.star,
+            create:req.body.create,
+            readMe:req.body.readMe
+           
+          }}
+        })
+        .then(result=>{res.send(result.modifiedCount>0)
+          console.log(result)})
+   
+  
+    
   })
   const updateCollection = client.db("themeManagement").collection("updateTest");
   app.post('/updateTest',(req,res)=>{
